@@ -17,6 +17,9 @@ class IndexView(TemplateView):
         return context
     
 class RedirectToMaktab(RedirectView):
+    """
+    a class redirect view to redirect to maktabkhooneh
+    """
     url= "https://maktabkhooneh.com"
 
     def get_redirect_url(self, *args, **kwargs):
@@ -25,6 +28,9 @@ class RedirectToMaktab(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
     
 class PostListView(PermissionRequiredMixin,LoginRequiredMixin,ListView):
+    """
+    a class list view to show posts
+    """
     permission_required = 'blog.view_post'
     # model = Post
     queryset = Post.objects.filter(status=True)
@@ -36,6 +42,9 @@ class PostListView(PermissionRequiredMixin,LoginRequiredMixin,ListView):
     context_object_name = 'posts'
 
 class PostDetailView(LoginRequiredMixin,DetailView):
+    """
+    a class detail view to show detail of desired post
+    """
     model = Post
     # template_name = "blog/post_detail.html"
 
@@ -50,6 +59,9 @@ class PostDetailView(LoginRequiredMixin,DetailView):
 #         return super(PostCreateView, self).form_valid(form)(
 
 class PostCreateView(LoginRequiredMixin,CreateView):
+    """
+    A class create view to create a new post
+    """
     model = Post
     # fields = ['author','title','content','status','category','published_date']
     form_class = PostForm
@@ -60,10 +72,16 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
     
 class PostEditView(LoginRequiredMixin,UpdateView):
+    """
+    a class update view to edit desire post
+    """
     model = Post
     form_class= PostForm
     success_url = '/blog/post'
 
 class PostDeleteView(LoginRequiredMixin,DeleteView):
+    """
+    a class delete view to delete a post
+    """
     model = Post
     success_url = '/blog/post'
