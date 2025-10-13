@@ -55,6 +55,9 @@ class PostListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     ordering = "-id"
     context_object_name = "posts"
 
+class PostListApiView(TemplateView):
+    template_name = 'blog/post_list_api.html'
+
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     """
