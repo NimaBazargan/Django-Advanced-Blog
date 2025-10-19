@@ -12,7 +12,7 @@ djangorestframework_simplejwt
 django-cors-headers
 
 # deployment modules
-requests
+gunicorn
 
 # email third party modules
 django-mail-templated
@@ -30,5 +30,5 @@ redis
 django-celery-beat
 django-redis
 
-
+requests
 
